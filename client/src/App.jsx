@@ -4,15 +4,15 @@ import Layout from './components/common/Layout';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './pages/Dashboard';
+import Teams from './pages/Teams';
 
-// Protected Route wrapper
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="text-center">
         <span className="text-4xl">🐝</span>
-        <p className="text-white mt-2">Loading TaskHive...</p>
+        <p className="text-gray-600 mt-2">Loading TaskHive...</p>
       </div>
     </div>
   );
@@ -22,11 +22,9 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <Routes>
-      {/* Public Routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* Protected Routes */}
       <Route path="/" element={
         <ProtectedRoute>
           <Layout />
@@ -34,9 +32,9 @@ function App() {
       }>
         <Route index element={<Navigate to="/dashboard" />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="teams" element={<Teams />} />
       </Route>
 
-      {/* Catch all */}
       <Route path="*" element={<Navigate to="/dashboard" />} />
     </Routes>
   );
