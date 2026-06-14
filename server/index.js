@@ -4,10 +4,10 @@ const cors = require('cors');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
+const teamRoutes = require('./routes/teams');
 
 const app = express();
 
-// Middleware
 app.use(cors({
   origin: process.env.CLIENT_URL,
   credentials: true
@@ -16,13 +16,12 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/teams', teamRoutes);
 
-// Test route
 app.get('/', (req, res) => {
   res.json({ message: 'TaskHive API is running 🐝' });
 });
 
-// Connect to MongoDB and start server
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB connected');
