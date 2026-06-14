@@ -5,6 +5,9 @@ require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
 const teamRoutes = require('./routes/teams');
+const projectRoutes = require('./routes/projects');
+const taskRoutes = require('./routes/tasks');
+const activityRoutes = require('./routes/activity');
 
 const app = express();
 
@@ -14,9 +17,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/teams', teamRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/activity', activityRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'TaskHive API is running 🐝' });
