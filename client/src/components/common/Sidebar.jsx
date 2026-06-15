@@ -6,7 +6,8 @@ import {
   MdFolderOpen,
   MdSettings,
   MdLogout,
-  MdCalendarMonth
+  MdCalendarMonth,
+  MdTask
 } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
@@ -25,7 +26,8 @@ const Sidebar = () => {
     { to: '/projects', icon: <MdFolderOpen size={20} />, label: 'Projects' },
     { to: '/teams', icon: <MdGroup size={20} />, label: 'Teams' },
     { to: '/calendar', icon: <MdCalendarMonth size={20} />, label: 'Calendar' },
-  ];
+    { to: '/tasks', icon: <MdTask size={20} />, label: 'Tasks' },
+];
 
   const generalLinks = [
     { to: '/settings', icon: <MdSettings size={20} />, label: 'Settings' },
