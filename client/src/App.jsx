@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Teams from './pages/Teams';
 import Projects from './pages/Projects';
 import Tasks from './pages/Tasks';
+import Calendar from './pages/Calendar';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -41,6 +42,7 @@ function App() {
         <Route path="teams" element={<Teams />} />
         <Route path="projects" element={<Projects />} />
         <Route path="tasks" element={<Tasks />} />
+        <Route path="calendar" element={<Calendar />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/dashboard" />} />
