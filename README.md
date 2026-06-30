@@ -196,11 +196,5 @@ npm run build
 
 **Pratiyush Kumar**
 
-LinkedIn: https://www.linkedin.com/in/pratiyush-kumar-318435284/
-GitHub: https://github.com/Pratiyush-9
-
----
-
-## 📄 License
-
-This project is licensed under the **ISC License**.
+- LinkedIn: https://www.linkedin.com/in/pratiyush-kumar-318435284/
+- GitHub: https://github.com/Pratiyush-9
