@@ -1,6 +1,6 @@
-# 🐝 TaskHive
+# TaskHive
 
-TaskHive is a **full-stack MERN project management and team collaboration platform** designed to help teams organize projects, manage tasks, collaborate efficiently, and track progress from a single workspace. It combines a modern **React + Vite** frontend with an **Express + MongoDB** backend, providing an intuitive and responsive user experience.
+TaskHive is a **full-stack MERN project management platform** built with React, Node.js, Express, and MongoDB, enabling teams to manage projects, collaborate, and track tasks efficiently.
 
 ## ✨ Features
 
