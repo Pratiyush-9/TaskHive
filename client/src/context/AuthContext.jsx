@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { login as loginApi, register as registerApi } from '../utils/api';
+import { login as loginApi, register as registerApi, updateProfile as updateProfileApi } from '../utils/api';
 
 const AuthContext = createContext();
 
@@ -30,13 +30,32 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
+  const updateProfile = async (data) => {
+    try {
+      const { data: updatedUser } = await updateProfileApi(data);
+      setUser(updatedUser);
+      localStorage.setItem('taskhive_user', JSON.stringify(updatedUser));
+      return updatedUser;
+    } catch (error) {
+      if (!error?.response) {
+        const currentUser = JSON.parse(localStorage.getItem('taskhive_user')) || {};
+        const updatedUser = { ...currentUser, ...data };
+        setUser(updatedUser);
+        localStorage.setItem('taskhive_user', JSON.stringify(updatedUser));
+        return updatedUser;
+      }
+
+      throw error;
+    }
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem('taskhive_user');
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, updateProfile, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

@@ -12,10 +12,10 @@ const activityRoutes = require('./routes/activity');
 const app = express();
 
 app.use(cors({
-  origin: process.env.CLIENT_URL,
+  origin: [process.env.CLIENT_URL, 'http://localhost:5174'],
   credentials: true
 }));
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/teams', teamRoutes);

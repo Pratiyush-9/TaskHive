@@ -39,8 +39,7 @@ const Sidebar = () => {
 
       {/* Logo */}
       <div className="p-6 border-b border-gray-100">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">🐝</span>
+        <div className="flex items-center">
           <span className="text-xl font-bold text-gray-900">TaskHive</span>
         </div>
       </div>
@@ -88,31 +87,30 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      {/* Mobile App Banner */}
-      <div className="mx-4 mb-4 bg-violet-600 rounded-xl p-4 text-white">
-        <div className="w-6 h-6 rounded-full border-2 border-white mb-2" />
-        <p className="font-semibold text-sm">Mobile App</p>
-        <p className="text-xs text-violet-200 mt-1">
-          Manage tasks on the go with TaskHive mobile.
-        </p>
-        <button className="mt-3 w-full bg-white text-violet-600 text-xs
-        font-semibold py-1.5 rounded-lg">
-          Download
-        </button>
-      </div>
-
       {/* User + Logout */}
       <div className="p-4 border-t border-gray-100">
-        <div className="flex items-center gap-3 px-3 py-2 mb-2">
-          <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center
-          justify-center text-white text-sm font-bold">
-            {user?.name?.charAt(0).toUpperCase()}
+        <button
+          type="button"
+          onClick={() => navigate('/settings')}
+          className="flex items-center gap-3 px-3 py-2 mb-2 rounded-lg text-left w-full hover:bg-gray-50 transition-colors"
+          aria-label="Open settings"
+        >
+          <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white text-sm font-bold overflow-hidden shrink-0">
+            {user?.avatar ? (
+              <img
+                src={user.avatar}
+                alt={user?.name || 'User avatar'}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span>{user?.name?.charAt(0).toUpperCase()}</span>
+            )}
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-gray-900 truncate">{user?.name}</p>
             <p className="text-xs text-gray-400 truncate">{user?.email}</p>
           </div>
-        </div>
+        </button>
         <button
           onClick={handleLogout}
           className="flex items-center gap-3 px-3 py-2.5 rounded-lg

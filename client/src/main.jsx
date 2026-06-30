@@ -18,7 +18,7 @@ createRoot(document.getElementById('root')).render(
             position="top-right"
             autoClose={3000}
             hideProgressBar={false}
-            theme="dark"
+            theme="light"
           />
         </TeamProvider>
       </AuthProvider>

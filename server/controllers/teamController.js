@@ -1,4 +1,6 @@
 const Team = require('../models/Team');
+const User = require('../models/User');
+const { sendMemberAddedEmail } = require('../utils/emailService');
 
 // CREATE TEAM
 const createTeam = async (req, res) => {
@@ -75,12 +77,28 @@ const addMember = async (req, res) => {
       return res.status(400).json({ message: 'User already in team' });
     }
 
+    const user = await User.findById(userId).select('name email');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
     team.members.push({ user: userId, role: role || 'member', capacity: capacity || 5 });
     await team.save();
 
     const updatedTeam = await Team.findById(team._id)
       .populate('owner', 'name email')
       .populate('members.user', 'name email avatar');
+
+    try {
+      await sendMemberAddedEmail({
+        to: user.email,
+        recipientName: user.name,
+        teamName: team.name,
+        addedBy: req.user?.name || req.user?.email,
+      });
+    } catch (mailError) {
+      console.error('Member-added email failed:', mailError.message);
+    }
 
     res.json(updatedTeam);
   } catch (error) {
